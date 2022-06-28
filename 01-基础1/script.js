@@ -34,3 +34,16 @@ console.log(Boolean(''));
 console.log(Boolean(""));
 console.log(Boolean(undefined));
 console.log(Boolean(NaN));
+
+//'||'：第一个为真则，返回第一个，否则返回第二个
+console.log(3 || 'Jonas'); //结果为3，两个都为真，则返回第一个
+console.log('' || 'Jonas'); //结果为Jonas
+console.log(null || '' || true || false || 1); //结果为true
+//a不为0的情况下
+a = 12;
+const guest = a ? a : 10;
+const guest2 = a || 10;
+//'&&':从左往右，遇到假就返回假，如果全为真，则返回最后一个真
+console.log(3 && 'Jonas'); //结果为Jonas，两个都为真，则返回第一个
+console.log(12 && 'hjk' && 12); //结果为12
+console.log(12 && 'hjk' && 12 && 0 && 'sda'); //结果为0
