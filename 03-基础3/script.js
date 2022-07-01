@@ -82,3 +82,22 @@ maskGreditCard(12334564567);
 //repeat
 const message2 = 'bad waether... '
 console.log(message2.repeat(4));
+//code chanllenge
+const changeStr = function(str1) {
+    const strs = str1.toLowerCase().split('-');
+    const newStrs = [];
+    for (const item of strs) {
+        newStrs.push(item[0].toUpperCase() + item.slice(1));
+    }
+    return newStrs.join('');
+}
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+const btn = document.querySelector('button');
+btn.textContent = '确认';
+btn.addEventListener('click', function() {
+    const text = document.querySelector('textarea').value;
+    console.log(text);
+    const newtext = changeStr(text);
+    console.log(newtext);
+})

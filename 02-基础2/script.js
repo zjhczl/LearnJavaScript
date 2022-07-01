@@ -41,6 +41,170 @@ const yearsUntilRetirement = (birthYear, name) => {
     return `${name} will retire in ${retirement}`;
 }
 console.log(yearsUntilRetirement(1996, 'zj'));
+//-------------高级用法（函数）------------- 
+//默认参数
+const createBooking = function(numOfFlight = "F1", numOfPassengers = "44", price = "asd") {
+    const booking = {
+        numOfFlight,
+        numOfPassengers,
+        price,
+    };
+    console.log(booking);
+}
+const booking = [, 5, 3.5];
+createBooking(...booking);
+const flight = 'LH123';
+const jonas = {
+    name: 'jonas',
+    passport: 123534456
+}
+const checkIn = function(flightNum, passenger) {
+    flightNum = 'LH436';
+    passenger.name = 'Mr.' + passenger.name;
+}
+checkIn(flight, jonas);
+console.log(flight, jonas); //flight没变，jonas变了。
+//高阶函数。在javascript中，函数可以被当作参数，也可以被返回
+const oneWord = function(str) {
+    return str.replaceAll(' ', '').toLowerCase();
+}
+const upperFirstWord = function(str) {
+        const [first, ...others] = str.split(' ');
+        return [first.toUpperCase(), ...others].join(' ');
+    }
+    //函数作参数
+const transfromer = function(str, fn) {
+    console.log("TS:" + fn(str));
+    console.log('TS by ' + fn.name);
+}
+transfromer('Javascript is good!', upperFirstWord);
+transfromer('Javascript is good!', oneWord);
+//函数作返回值
+const greet = function(greeting) {
+    return function(name) {
+        console.log(`${greeting} ${name}`);
+    }
+}
+const greeterHey = greet('Hey');
+greeterHey('jonas');
+greet('hey')('jonas');
+//箭头函数
+const greet2 = greeting => name => console.log(`${greeting} ${name}`);
+greet('hey')('jonas2');
+//this
+const luf = {
+    airline: 'Luf',
+    iataCode: 'LH',
+    bookings: [],
+    book: function(flightNum, name) {
+        console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+        this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name: name });
+    },
+
+}
+luf.book(123, 'zj');
+const book = luf.book;
+//book(123,'zj'); //错误，因为this指向不明确
+//用call明确this的指向
+book.call(luf, 213, 'zj');
+
+const eur = {
+    airline: 'EUR',
+    iataCode: 'EW',
+    bookings: [],
+}
+book.call(eur, 213, 'zj');
+//apply
+book.apply(eur, [123, 'zj']);
+//bind 返回一个新函数
+const bookEU = book.bind(eur); //指定this指针
+bookEU(123, 'zj');
+const bookTe = book.bind(eur, 123); //指定this指针和第一个参数
+bookTe('zj2');
+//bind事件监听
+// document.body.addEventListener('click', luf.book.bind(luf, 123, 'zj'));
+//bind指定参数
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+const addTax2 = addTax.bind(null, 0.1);
+console.log(addTax2(200));
+//coding challenge
+const poll = {
+        question: "世界上最好的语言是？",
+        options: ['0:Javascript', '1:Python', '2:C++', '3:Php'],
+        answers: new Array(4).fill(0), //[0,0,0,0]
+        registerNewAnswer() {
+            const answer = Number(prompt(`${this.question}\n${this.options.join('\n')}\n(写下编号)`));
+            console.log(answer);
+            typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++;
+            console.log(this.answers);
+        },
+        display() {
+            console.log(this.answers);
+        }
+    }
+    //poll.registerNewAnswer();
+document.body.addEventListener('click', poll.registerNewAnswer.bind(poll));
+poll.display.call({ answers: [1, 7, 9, 9] });
+//只执行一次的函数 
+(function() {
+    console.log('run once!');
+})();
+
+(() => console.log('run once!'))();
+//闭包
+const secureBooking = function(passengerCount) {
+    //let passengerCount = 10;
+    return function() {
+        passengerCount++;
+        console.log(passengerCount + " passenger");
+    }
+}
+let passengerCount = 0;
+const booker = secureBooking(30);
+booker(); //改变了函数定义中的passengerCount
+booker();
+booker();
+console.log(booker);
+console.dir(booker);
+//闭包的几种情况
+//1
+let f;
+const g = function() {
+    const a = 23;
+    f = function() {
+        console.log(a);
+    }
+}
+g();
+f();
+//2
+const boardPassengers = function(n, wait) {
+    const perGroup = n / 3;
+    //设置函数在1000毫秒后执行
+    setTimeout(function() {
+        console.log(n, perGroup);
+    }, wait * 1000);
+    console.log(wait);
+}
+boardPassengers(180, 4);
+//coding challenge
+
+(function() {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+    header.addEventListener('click', function() {
+        header.style.color = 'blue';
+    })
+})();
+
+
+
+
+
+
+
+
 
 ////////////////////////////////////
 //////////数组
