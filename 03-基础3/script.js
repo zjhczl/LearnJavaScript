@@ -3,26 +3,26 @@
 const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
 
 const calcTempAmplitude = function(temperatures) {
-        let max = temperatures[0];
-        let min = temperatures[0];
+    let max = temperatures[0];
+    let min = temperatures[0];
 
-        for (let i = 0; i < temperatures.length; i++) {
-            let temp = temperatures[i];
-            //console.log(typeof(temp));
-            if (typeof(temp) == 'number') {
-                if (max < temp)
-                    max = temp;
-                if (min > temp)
-                    min = temp;
+    for (let i = 0; i < temperatures.length; i++) {
+        let temp = temperatures[i];
+        //console.log(typeof(temp));
+        if (typeof(temp) == 'number') {
+            if (max < temp)
+                max = temp;
+            if (min > temp)
+                min = temp;
 
-            }
         }
-        return max - min;
-
     }
-    //console.log(calcTempAmplitude(temperatures));
-console.log('10' + 273)
-    //coding challenge#1
+    return max - min;
+
+};
+//console.log(calcTempAmplitude(temperatures));
+console.log('10' + 273);
+//coding challenge#1
 function printForecast(temps) {
     let tstring = '...';
     for (let i = 0; i < temps.length; i++) {

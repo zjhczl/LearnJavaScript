@@ -297,6 +297,82 @@ const add = function(...numbers) {
 }
 add(1, 2);
 add(1, 2, 3, 4, 5);
+//reverse 会改变原来数组顺序 
+const arrr = ['a', 'b', 'c', 'd', 'e'];
+console.log(arrr.reverse());
+console.log(arrr);
+//concat 连接连个数组    
+const letters = arrr.concat(['f', 'g']);
+console.log(letters);
+//join 
+console.log(arrr.join('-'));
+//forEach(contiue,break不起作用)
+const movements = [21, 4563, 685, -234, 456, -235, 456];
+for (let item of movements) {
+    console.log(item);
+}
+movements.forEach(function(item, index, arr) {
+    console.log(item);
+});
+//map 对每一个元素进行相同的操作
+console.log(movements.map(function(mov, index, arr) {
+    return mov * 10;
+}));
+console.log(movements.map(mov => mov * 10));
+//filter return为true的会被保留
+console.log(movements.filter(function(mov) {
+    return mov > 0;
+}));
+//reduce 第二个参数是acc的初始值 return的值就是下次acc的值
+console.log(movements.reduce(function(acc, mov, index, arr) {
+    return acc + mov;
+}, 0));
+console.log(movements.reduce((acc, mov) => acc > mov ? acc : mov, movements[0])); //求最大值
+//find 返回第一个满足条件的元素
+console.log(movements.find(mov => mov < 0));
+//findIndex 返回第一个满足条件的元素的index
+console.log(movements.findIndex(mov => mov < 0));
+//some 返回bool
+console.log(movements.some(mov => mov > 0)); //true
+//every 所有元素都满足返回true，否则返回false
+console.log(movements.every(mov => mov > -1000));
+//flat
+const arr4 = [
+    [1, 2, 3],
+    [4, 5, 6], 7, 8
+];
+console.log(arr4.flat()); //[1,2,3,4,5,6,7,8]
+const arrDeep = [
+    [1, [2, 3]],
+    [4, 5, 6], 7, 8
+];
+console.log(arrDeep.flat()); //[1,[2,3],4,5,6,7,8]
+
+console.log(arrDeep.flat(2)); //[1,2,3,4,5,6,7,8]
+//sort 排序A-Z 基于string的排序（改变原来数组顺序）
+const owners = ['aasd', 'cdas', 'bdsa'];
+console.log(owners.sort()); //['aasd', 'bdas', 'cdsa'];
+console.log(movements.sort()); //[-234, -235, 21, 456, 456, 4563, 685]
+
+//return <0;a,b
+//return >0;b,a
+console.log(movements.sort((a, b) => {
+    return a - b;
+})); //[-235, -234, 21, 456, 456, 685, 4563]
+
+//Array
+const xx = new Array(7);
+console.log(xx); //[empty*7]
+//fill 参数 （value,startIndex,endIndex）
+xx.fill(1, -1, 'zj');
+console.log(xx); //['zj','zj','zj','zj','zj','zj','zj']
+//Array.from()
+const xxx = Array.from({ length: 7 }, () => 'zj');
+console.log(xxx); //['zj','zj','zj','zj','zj','zj','zj']
+
+const xxxx = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(xxxx); //[1,2,3,4,5,6,7]
+
 
 
 
@@ -415,6 +491,18 @@ for (let i = 0; i < arr3.length; i++) {
 for (const item of arr3) {
     console.log(arr3);
 }
+//forEach(contiue,break不起作用)
+//const movements = [21, 4563, 685, -234, 456, -235, 456];
+for (let item of movements) {
+    console.log(item);
+}
+movements.forEach(function(item, index, arr) {
+    console.log(item);
+})
+
+
+
+
 ////////////////////////////////////
 //////////集合
 const ordersSet = new Set(['asd', 'basd', 'basd', 'dasd']);
@@ -437,6 +525,13 @@ for (const item of ordersSet) {
 //集合转数组
 const orderArr = [...ordersSet];
 console.log(orderArr);
+//forEach
+ordersSet.forEach(function(value, key, map) {
+    console.log(key, value); //key和value相同
+});
+
+
+
 ////////////////////////////////////
 //////////map
 //定义map
@@ -478,3 +573,7 @@ console.log([...objMap]);
 console.log([...objMap.entries()]);
 console.log([...objMap.keys()]);
 console.log([...objMap.values()]);
+//forEach
+question.forEach(function(value, key, map) {
+    console.log(key, value);
+});
