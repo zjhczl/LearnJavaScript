@@ -47,3 +47,41 @@ const guest2 = a || 10;
 console.log(3 && 'Jonas'); //结果为Jonas，两个都为真，则返回第一个
 console.log(12 && 'hjk' && 12); //结果为12
 console.log(12 && 'hjk' && 12 && 0 && 'sda'); //结果为0
+//Number
+//parsing
+console.log(Number.parseInt('23.321', 10));
+console.log(Number.parseFloat('23.321', 10));
+//isNaN
+console.log(Number.isNaN(222)); //false
+console.log(Number.isNaN('2213')); //false
+console.log(Number.isNaN(2 / 0)); //false
+console.log(Number.isNaN(NaN)); //true
+//isFinite
+console.log(Number.isFinite(222)); //true
+console.log(Number.isFinite('2213')); //false
+console.log(Number.isFinite(2 / 0)); //false
+console.log(Number.isFinite(NaN)); //false
+
+//Math
+//sqrt
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+//max min
+console.log(Math.max(12, 34, 6));
+console.log(Math.min(12, 34, 6));
+//random
+console.log(Math.trunc(Math.random() * 6) + 1);
+const randomInt = (min, max) => Math.trunc(Math.random() * (max + 1 - min) + min);
+console.log(randomInt(2, 5));
+
+//setTimeout
+let sss = 0;
+const st = setTimeout(() => sss = 6, 2000);
+clearTimeout(st);
+console.log(sss);
+setTimeout((a) => console.log(a), 3000, 'zj');
+//setInterval
+setInterval(() => {
+    const now = new Date();
+    console.log(now);
+}, 5000);
