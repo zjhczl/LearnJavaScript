@@ -169,7 +169,6 @@ h4 {
     .operations__content--active {
       display: grid; }
   .operations__icon {
-    font-size: 1rem;
     grid-row: 1/3; }
   .operations .footer {
     background-color: #444;

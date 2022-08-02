@@ -107,3 +107,29 @@ tabsContainer.addEventListener('click', function(e) {
     tabsCotent.forEach(c => c.classList.remove('operations__content--active'));
     document.querySelector(`.operations__content--${clicked.getAttribute('data-tab')}`).classList.add('operations__content--active');
 });
+
+//导航淡出效果
+const nav = document.querySelector('.nav');
+const changeOpacity = function(e) {
+
+    if (e.target.classList.contains('nav__link')) {
+        const opacity = this;
+        const link = e.target;
+        const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+        const logo = link.closest('.nav').querySelector('img');
+        siblings.forEach(function(el) {
+            if (el !== e.target) {
+                el.style.opacity = opacity;
+
+            }
+        });
+        logo.style.opacity = opacity;
+    }
+}
+
+// const nav = document.querySelector('.nav');
+// nav.addEventListener("mouseover", function(e) {
+//     changeOpacity(e, 0.5);
+// });
+nav.addEventListener("mouseover", changeOpacity.bind(0.5));
+nav.addEventListener("mouseout", changeOpacity.bind(1));
