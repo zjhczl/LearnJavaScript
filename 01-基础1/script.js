@@ -81,7 +81,65 @@ clearTimeout(st);
 console.log(sss);
 setTimeout((a) => console.log(a), 3000, 'zj');
 //setInterval
-setInterval(() => {
-    const now = new Date();
-    console.log(now);
-}, 5000);
+// setInterval(() => {
+//     const now = new Date();
+//     console.log(now);
+// }, 5000);
+
+/////////////////dom
+//选择元素
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+console.log(document.querySelector('h1')); //返回满足条件的第一个元素
+console.log(document.querySelectorAll('h1')); //返回满足条件的所有元素
+console.log(document.getElementById('head'));
+console.log(document.getElementsByTagName('h1')); //HTMLCollection 实时的
+console.log(document.getElementsByClassName('head')); //HTMLCollection 实时的
+//创建插入html
+//insertAdjacentHTML()
+h1 = document.querySelector('h1');
+h1.insertAdjacentHTML('afterBegin', '<div>insertAdjacentHTML</div>');
+//createElement()
+let message = document.createElement('div'); //创造元素，不显示
+message.classList.add('cookie-messgae'); //添加class
+message.textContent = 'createElemnet!!!';
+//添加元素
+document.body.prepend(message); //在body最前面添加该元素
+// document.body.append(message); //在body最后面添加该元素
+document.body.append(message.cloneNode(true)); //true表示子元素也会被复制
+h1.before(message.cloneNode(true)); //在h1前面添加该元素
+h1.after(message.cloneNode(true)); //在h1后面添加该元素
+//删除元素
+message.remove();
+// message.parentElement.removeChild(message);
+//Styles
+h1.style.fontSize = '5rem';
+console.log(h1.style);
+console.log(h1.style.fontSize); //5rem
+console.log(h1.style.color); //空白 因为只显示内联样式
+//显示元素所有style
+console.log(getComputedStyle(h1));
+console.log(getComputedStyle(h1).color); //rgb(255,255,255)
+h1.style.fontSize = Number.parseFloat(getComputedStyle(h1).fontSize, 10) - 10 + "px";
+//直接设置值
+h1.style.setProperty('color', 'red');
+
+//Attributes
+console.log(h1.id);
+console.log(h1.className); //注意 不是class
+console.log(h1.getAttribute('class'));
+h1.setAttribute('woner', 'zj');
+console.log(h1.getAttribute('woner'));
+//classes
+h1.classList.add('test'); //可带多个className，用‘，’隔开
+h1.classList.remove('test');
+h1.classList.toggle('test');
+console.log(h1.classList.contains('test'));
+
+
+
+
+// document.addEventListener('keydown', function(e) {
+//     console.log(e.key);
+// });
