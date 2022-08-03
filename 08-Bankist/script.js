@@ -133,3 +133,35 @@ const changeOpacity = function(e) {
 // });
 nav.addEventListener("mouseover", changeOpacity.bind(0.5));
 nav.addEventListener("mouseout", changeOpacity.bind(1));
+
+
+//导航悬浮
+// // 方法一 
+// window.addEventListener("scroll", function() {
+//     // console.log(e);
+//     console.log(window.scrollY);
+//     if (this.window.scrollY >= 689) {
+//         nav.classList.add('sticky');
+//     } else {
+//         nav.classList.remove('sticky');
+//     }
+// });
+//方法二
+// const obsCallBack = function(entries, obs) {
+//     entries.forEach(function(en) {
+//         console.log(en);
+//     });
+// };
+// const obsOptions = {
+//     root: null,
+//     threshold: 0
+// };
+// const observer = new IntersectionObserver(obsCallBack, obsOptions);
+// observer.observe(section1);
+const header = document.querySelector('.header');
+const headerObserver = new IntersectionObserver(function(entries) {
+    const entry = entries[0];
+    // console.log(entry);
+    if (entry.isIntersecting) { nav.classList.remove('sticky'); } else { nav.classList.add('sticky'); }
+}, { root: null, threshold: 0 });
+headerObserver.observe(header);
