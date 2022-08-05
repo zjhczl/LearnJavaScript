@@ -165,3 +165,39 @@ const headerObserver = new IntersectionObserver(function(entries) {
     if (entry.isIntersecting) { nav.classList.remove('sticky'); } else { nav.classList.add('sticky'); }
 }, { root: null, threshold: 0 });
 headerObserver.observe(header);
+
+//section进入动画
+const allSections = document.querySelectorAll(".section");
+const revalSection = function(entries, observer) {
+    const [entry] = entries;
+    console.log(entry);
+    if (entry.isIntersecting) {
+        entry.target.classList.remove('section--hidden');
+        observer.unobserve(entry.target);
+    }
+
+};
+const sectionObserver = new IntersectionObserver(revalSection, {
+    root: null,
+    threshold: 0.2,
+});
+
+allSections.forEach(function(section) {
+    section.classList.add('section--hidden');
+    sectionObserver.observe(section);
+});
+
+//预加载图像
+const imgObserver = new IntersectionObserver(function(entries, observer) {
+    const entry = entries[0];
+    // console.log(entry);
+    entry.target.classList.remove('lazy-img');
+    console.log(entry.target.getAttribute('date-src'));
+    entry.target.setAttribute('src', entry.target.getAttribute('data-src'));
+    observer.unobserve(entry.target);
+
+}, { root: null, threshold: 0 });
+const imgs = document.querySelectorAll('.lazy-img');
+imgs.forEach(function(img) {
+    imgObserver.observe(img);
+})

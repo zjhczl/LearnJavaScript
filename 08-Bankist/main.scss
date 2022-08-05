@@ -125,6 +125,7 @@ h4 {
     border-top: 1px solid rgba(141, 134, 134, .5);
     padding: 10%;
     padding: 10%;
+    transition: all 1s;
     &__title {}
     &__description {
         color: #5ec576;
@@ -141,6 +142,10 @@ h4 {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+    }
+    &--hidden {
+        opacity: 0;
+        transform: translateY(8rem);
     }
 }
 
@@ -250,4 +255,12 @@ h4 {
     left: 0;
     width: 100%;
     padding: .5rem 0;
+}
+
+.lazy-img {
+    filter: blur(20px);
+}
+
+.features__img {
+    transition: all 1.5s;
 }

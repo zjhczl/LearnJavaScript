@@ -105,7 +105,8 @@ h4 {
 .section {
   border-top: 1px solid rgba(141, 134, 134, 0.5);
   padding: 10%;
-  padding: 10%; }
+  padding: 10%;
+  transition: all 1s; }
   .section__description {
     color: #5ec576;
     font-size: 2rem; }
@@ -119,6 +120,9 @@ h4 {
     flex-direction: column;
     justify-content: space-between;
     align-items: center; }
+  .section--hidden {
+    opacity: 0;
+    transform: translateY(8rem); }
 
 .features {
   display: grid;
@@ -201,3 +205,9 @@ h4 {
   left: 0;
   width: 100%;
   padding: .5rem 0; }
+
+.lazy-img {
+  filter: blur(20px); }
+
+.features__img {
+  transition: all 1.5s; }
