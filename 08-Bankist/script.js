@@ -313,3 +313,18 @@ const slide = function() {
     initSlide();
 }
 slide();
+
+//
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("html and javascript are loaded!");
+});
+
+window.addEventListener("load", function() {
+    console.log("page fully loaded!");
+});
+
+// window.addEventListener("beforeunload", function(e) {
+//     e.preventDefault();
+//     console.log("用户关闭界面的时候出发");
+//     e.returnValue = '';
+// });
